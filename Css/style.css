@@ -1,19 +1,38 @@
-/* Start Global Css */
+/* Start Css Global */
 * {
     box-sizing: border-box;
 }
 
-body {
-    background-color: #ccc;
-    font-family: Arial, Helvetica, sans-serif;
+:root {
+    --main-color: #dddddd;
+    --second-color: #333333;
+    --third-color: #ffffff;
+    --shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-:root {
-    --main-color: #ddd;
-    --second-color: #333;
-    --third-color: #fff;
-    --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+body {
+    background-color: #cccccc;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--second-color);
 }
+
+a.button {
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px;
+    width: fit-content;
+    background-color: var(--second-color);
+    color: var(--third-color);
+    transition: 0.3s ease-in-out;
+}
+
+a.button:hover {
+    background-color: var(--third-color);
+    color: var(--second-color);
+}
+
+/* Start Css Global */
 
 .container {
     margin: 40px;
@@ -21,222 +40,254 @@ body {
     gap: 40px;
 }
 
-a.btn {
-    display: block;
-    background-color: var(--second-color);
-    color: var(--third-color);
-    padding: 10px 20px;
-    width: fit-content;
-    text-decoration: none;
-}
-
-/* End Global Css */
-/* Start Navigation */
-
-.container nav ul {
+/* Start Header Section */
+.container header nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
-.container nav ul li a {
+.container header nav ul li a {
     display: block;
     text-decoration: none;
     color: var(--second-color);
     padding: 15px;
+    background-color: var(--main-color);
     font-size: 18px;
     text-transform: uppercase;
-    background-color: var(--main-color);
     text-align: center;
+    transition: 0.3s ease-in-out;
     box-shadow: var(--shadow);
 }
 
-.container nav ul li a:hover {
+.container header nav ul li a:hover {
     background-color: var(--second-color);
     color: var(--third-color);
-    transition: 0.5s ease-in-out;
 }
 
-/* End Navigation */
-/* Start Top Container */
-.top-container {
+@media(min-width:700px) {
+    .container header nav ul {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* End Header Section */
+/* Start Sales Section  */
+.sales-section {
     display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
-    grid-template-areas:
-        "showcase  showcase box-a"
-        "showcase  showcase box-b";
 }
 
-.top-container>div:first-child {
-    grid-area: showcase;
-    min-height: 400px;
+.sales-section>div:nth-of-type(1) {
     background-image: url("../images/showcase.jpg");
     background-size: cover;
     background-position: center;
     color: var(--third-color);
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    padding: 60px 40px;
     box-shadow: var(--shadow);
+    display: grid;
+    align-content: center;
 }
 
-.top-container>div:first-child h1 {
-    font-size: 60px;
+.sales-section>div:nth-of-type(1) h1 {
+    font-size: 40px;
     margin-bottom: 0;
 }
 
-.top-container>div:first-child p {
-    font-size: 20px;
+.sales-section>div:nth-of-type(1) p {
     line-height: 1.6;
+    font-size: 18px;
     margin-top: 0;
 }
 
-.top-container>div a {
-    display: block;
-    background-color: var(--second-color);
-    color: var(--third-color);
-    padding: 10px 20px;
-    width: fit-content;
-    text-decoration: none;
-}
-
-.top-container .box {
+.sales-section .box {
     background-color: var(--main-color);
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    box-shadow: var(--shadow);
     padding: 20px;
+    display: grid;
+    justify-content: center;
+    height: 300px;
+    box-shadow: var(--shadow);
+    border-radius: 7px;
 }
 
-.top-container .box-a {
-    grid-area: box-a;
+.sales-section .box>* {
+    justify-self: center;
 }
 
-.top-container .box-b {
-    grid-area: box-b;
-}
-
-.top-container .box h4 {
+.sales-section .box h4 {
     font-size: 20px;
 }
 
-.top-container .box p {
+.sales-section .box p {
     font-size: 40px;
+    line-height: 1.6;
 }
 
-/* End  Top Container */
-/* start Boxes Section */
-.boxes-section {
+.sales-section .box p span {
+    font-size: 30px;
+}
+
+@media(min-width:500px) {
+    .sales-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sales-section>div:nth-of-type(1) {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+
+    .sales-section .box {
+        padding: 20px 10px;
+    }
+
+
+    .sales-section .first-box {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .sales-section .second-box {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+}
+
+@media(min-width:700px) {
+    .sales-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sales-section>div:nth-of-type(1) {
+        grid-area: 1 / 1 / 3 / 3;
+    }
+
+    .sales-section>div:nth-of-type(1) h1 {
+        font-size: 60px;
+    }
+
+    .sales-section .first-box {
+        grid-area: 1 / 3 / 2 / 4;
+    }
+
+    .sales-section .second-box {
+        grid-area: 2 / 3 / 3 / 4;
+    }
+}
+
+@media(min-width:1100px) {
+    .sales-section {
+        grid-template-columns: repeat(2, 1fr) 320px;
+    }
+}
+
+/* End Sales Section  */
+/* Start Services Section */
+.services-section {
     display: grid;
-    gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.boxes-section .box {
+.services-section .box {
     background-color: var(--main-color);
-    text-align: center;
-    box-shadow: var(--shadow);
     padding: 20px;
+    display: grid;
+    box-shadow: var(--shadow);
+    border-radius: 7px;
 }
 
-.boxes-section .box p {
+.services-section .box>* {
+    justify-self: center;
+}
+
+.services-section .box h4 {
+    font-size: 22px;
+}
+
+.services-section .box p {
     line-height: 1.6;
     font-size: 18px;
+    text-align: center;
 }
 
-.boxes-section .box h3 {
-    font-size: 20px;
-}
-
-/* Start Info Section */
-.info-section {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+/* End Services Section */
+/* Start Description Section */
+.description-section {
     background-color: var(--main-color);
     padding: 40px;
+    display: grid;
+    gap: 30px;
+    border-radius: 7px;
     box-shadow: var(--shadow);
 }
 
-.info-section .div-img img {
-    display: block;
-    width: 100%;
-    height: 100%;
+.description-section img {
+    max-width: 100%;
 }
 
-.info-section>div:nth-of-type(2) p {
-    line-height: 1.6;
+.description-section .desc-div h3 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.description-section .desc-div p {
     font-size: 18px;
+    line-height: 1.6;
 }
 
-/* End Info Section */
-/* Start Gallery Images */
+.description-section .desc-div a {
+    width: 100%;
+    text-align: center;
+}
+
+@media(min-width:700px) {
+    .description-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .description-section .desc-div a {
+        width: fit-content;
+    }
+
+}
+
+/* End Description Section */
+/* Start  Gallery Images */
 .gallery-images {
     display: grid;
-    gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.gallery-images>div {
+    box-shadow: var(--shadow);
 }
 
 .gallery-images>div img {
     display: block;
     width: 100%;
     height: 100%;
-    box-shadow: var(--shadow);
+    object-fit: cover;
 }
 
-/* End Gallery Images */
+/* End  Gallery Images */
 /* Start Footer */
 footer {
     background-color: var(--second-color);
-    text-align: center;
     color: var(--third-color);
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    font-size: 18px;
+}
+
+footer p span {
+    color: red;
+    font-size: 20px;
 }
 
 /* End Footer */
-/* Start Media Queries */
-@media(max-width:700px) {
-    .container nav ul {
-        grid-template-columns: 1fr;
-    }
-
-    .top-container {
-        grid-template-areas:
-            "showcase  showcase"
-            "box-a box-b";
-    }
-
-
-    .top-container>div:first-child h1 {
-        font-size: 40px;
-    }
-
-    .info-section {
-        grid-template-columns: 1fr;
-    }
-
-    .info-section a {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media(max-width:500px) {
-    .top-container {
-        grid-template-areas:
-            "showcase"
-            "box-a"
-            "box-b";
-    }
-}
-
-/* End Media Queries */
